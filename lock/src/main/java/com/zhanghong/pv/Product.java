@@ -32,8 +32,6 @@ public class Product implements Runnable{
     public void run() {
         while(true) {
             try {
-                //防止粘滞
-                Thread.sleep(100);
                 empty.acquire();
                 mutex.acquire();
                 product();

@@ -30,7 +30,6 @@ public class Consumer extends Thread{
     public void run() {
         while (true) {
             try {
-                Thread.sleep(100);
                 full.acquire();
                 mutex.acquire();
                 consumer();
@@ -44,6 +43,11 @@ public class Consumer extends Thread{
     }
     
     private void consumer() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("consumer-"+i+" get: "+queue.poll());
     }
 }

@@ -17,11 +17,13 @@ public class PV {
      * @param args
      * @throws InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         int n = 10;
-        final Semaphore empty = new Semaphore(n);
-        final Semaphore full = new Semaphore(0);
-        final Semaphore mutex = new Semaphore(1);
+        //空的个数
+        final Semaphore empty = new Semaphore(n, false);
+        //事件个数
+        final Semaphore full = new Semaphore(0, false);
+        final Semaphore mutex = new Semaphore(1, false);
         final Queue<Integer> queue = new LinkedList<Integer>();
         ExecutorService threadPool = Executors.newCachedThreadPool();
         for(int i =0;i<20;i++) {
